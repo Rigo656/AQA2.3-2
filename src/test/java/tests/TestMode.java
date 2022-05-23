@@ -40,7 +40,7 @@ public class TestMode {
     void shouldActiveUserInvalidLogin() {
         var invalidData = getRegisteredUser("active");
         $("[data-test-id='login'] input").setValue(DataGenerator.getRandomLogin());
-        $("[data-test-id='password'] input").setValue(DataGenerator.getRandomPassword());
+        $("[data-test-id='password'] input").setValue(invalidData.getPassword());
         $("[data-test-id='action-login'] .button__content ").click();
         $("[data-test-id='error-notification'] .notification__title").shouldHave(text("Ошибка"));
         $("[data-test-id='error-notification'] .notification__content").shouldHave(text("Ошибка! Неверно указан логин или пароль"));
@@ -49,7 +49,7 @@ public class TestMode {
     @Test
     void shouldActiveUserInvalidPassword() {
         var invalidData = getRegisteredUser("active");
-        $("[data-test-id='login'] input").setValue(DataGenerator.getRandomLogin());
+        $("[data-test-id='login'] input").setValue(invalidData.getLogin());
         $("[data-test-id='password'] input").setValue(DataGenerator.getRandomPassword());
         $("[data-test-id='action-login'] .button__content ").click();
         $("[data-test-id='error-notification'] .notification__title").shouldHave(text("Ошибка"));
@@ -59,7 +59,7 @@ public class TestMode {
     @Test
     void shouldBlockedUserInvalidPassword() {
         var invalidData = getRegisteredUser("blocked");
-        $("[data-test-id='login'] input").setValue(DataGenerator.getRandomLogin());
+        $("[data-test-id='login'] input").setValue(invalidData.getLogin());
         $("[data-test-id='password'] input").setValue(DataGenerator.getRandomPassword());
         $("[data-test-id='action-login'] .button__content ").click();
         $("[data-test-id='error-notification'] .notification__title").shouldHave(text("Ошибка"));
@@ -70,7 +70,7 @@ public class TestMode {
     void shouldBlockedUserInvalidLogin() {
         var invalidData = getRegisteredUser("blocked");
         $("[data-test-id='login'] input").setValue(DataGenerator.getRandomLogin());
-        $("[data-test-id='password'] input").setValue(DataGenerator.getRandomPassword());
+        $("[data-test-id='password'] input").setValue(invalidData.getPassword());
         $("[data-test-id='action-login'] .button__content ").click();
         $("[data-test-id='error-notification'] .notification__title").shouldHave(text("Ошибка"));
         $("[data-test-id='error-notification'] .notification__content").shouldHave(text("Ошибка! Неверно указан логин или пароль"));
